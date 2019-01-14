@@ -16,14 +16,14 @@
 
 module Project1_top(bt,sw,led,seg0,seg1);
 	input [1:0] bt;								//Input for top and botton buttons
-	input[9:0] sw;									//Input for 10 switches
-	output[9:0] led;								//Output for 10 LEDs							
-   output[7:0] seg0;								//Output for leftmost 7 segment
-	output[7:0] seg1;								//Output for second to left 7 segment
- //wire [1:0] s = 2'b00;   					//Backup for buttons (a mockup pretty much)
+	input[9:0] sw;							        //Input for 10 switches
+	output[9:0] led;							//Output for 10 LEDs							
+   	output[7:0] seg0;							//Output for leftmost 7 segment
+	output[7:0] seg1;							//Output for second to left 7 segment
+      //wire [1:0] s = 2'b00;   						//Backup for buttons (a mockup pretty much)
  
 	/*Buttons*/
-	reg [1:0]but;									//Register to store button presses
+	reg [1:0]but;								//Register to store button presses
 	always@(posedge bt[0])
 	begin
 		but[0] = ~but[0];
@@ -34,17 +34,17 @@ module Project1_top(bt,sw,led,seg0,seg1);
 	end
 	
 	/*Switches*/
-	wire[3:0]xswitch;								//4 Rightmost switches are x
+	wire[3:0]xswitch;							//4 Rightmost switches are x
 	assign xswitch = sw[3:0];
-	wire[3:0]yswitch;								//Next 4 after the x's are y control switches
+	wire[3:0]yswitch;							//Next 4 after the x's are y control switches
 	assign yswitch = sw[7:4];
-	wire[1:0]chooser;								//The 2 leftmost are 4 possible inner options within the different modes
-	assign chooser = sw[9:8];					//Basically mode within mode
+	wire[1:0]chooser;							//The 2 leftmost are 4 possible inner options within the different modes
+	assign chooser = sw[9:8];					        //Basically mode within mode
 	wire[7:0]bothswitch;							//For some of the cases where some modes use the full 8 bits
 	assign bothswitch = sw[7:0];
-	wire[7:0] out;									//MAIN OUTPUT
-	wire [1:0]dec;									//MAIN DECIMAL OUTPUT
-	wire hold;										//LED9 mainly for Arithmetic indicator
+	wire[7:0] out;								//MAIN OUTPUT
+	wire [1:0]dec;								//MAIN DECIMAL OUTPUT
+	wire hold;								//LED9 mainly for Arithmetic indicator
 	wire [1:0]dechold;
 	
 	/*Wires for outputs for 3 modules*/
