@@ -13,10 +13,10 @@ module Project2_Top(clock,sw0,sw1,bt0,bt1,seg0,seg1,seg2,seg3,seg4,seg5,led);
 	
 																					//Flag allows for the LFSR/Countdown to start the Countup
 	Clock_divider ckd1(clock,clockdownscale);							//Input 50MHz | Output 1kHz
-	LFSR l1(clock,random);													//Input 50MHz | Output random 12bit #
+	LFSR l1(clock,random);										//Input 50MHz | Output random 12bit #
 	state(clock,bt0,bt1,sw0,flag,enable);								//Input 50MHz, bt0, bt1, sw1 (reset), flag | Output enable
-	BCD_countdown(enable,bt0,clockdownscale,random,flag);		   //Input enable, sw1, 1kHz, random 12bit # | Output flag
-	BCD_counter(enable,clockdownscale,one,ten,hun,overflow);		//Input enable, 1kHz | Output decoded ones, tens, and hundreds place, and added 8 second overflow tracker
+	BCD_countdown(enable,bt0,clockdownscale,random,flag);		   				//Input enable, sw1, 1kHz, random 12bit # | Output flag
+	BCD_counter(enable,clockdownscale,one,ten,hun,overflow);					//Input enable, 1kHz | Output decoded ones, tens, and hundreds place, and added 8 second overflow tracker
 	Clock_divider1sec ckd1s(clock,clock1sec);
 	highscore(enable,one,ten,hun,overflow,onehigh,tenhigh,hunhigh,overflowhigh);
 	
