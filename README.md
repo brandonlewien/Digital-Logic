@@ -1,4 +1,4 @@
-# ECEN2350
+# ECEN2350 - Digital Logic
 
 Professor: Alex Fosdick
 
